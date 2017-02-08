@@ -1,0 +1,26 @@
+{
+  "name": "treehouse_react",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "node tools/nodeVersionCheck.js",
+    "setup": "node tools/setup/setupMessage.js && npm install && node tools/setup/setup.js",
+    "start-message": "babel-node tools/startMessage.js",
+    "prestart": "npm-run-all --parallel start-message remove-dist",
+    "start": "npm-run-all --parallel open:src lint:watch",
+    "open:src": "babel-node tools/srcServer.js",
+    "open:dist": "babel-node tools/distServer.js",
+    "lint": "esw webpack.config.* src tools --color",
+    "lint:watch": "npm run lint -- --watch",
+    "clean-dist": "npm run remove-dist && mkdir dist",
+    "remove-dist": "rimraf ./dist",
+    "prebuild": "npm run clean-dist && npm run lint && npm run test",
+    "build": "babel-node tools/build.js && npm run open:dist",
+    "analyze-bundle": "babel-node ./tools/analyzeBundle.js"
+  },
+  "author": "MATT BRUTON <the.bruton@gmail.com>",
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {}
+}
