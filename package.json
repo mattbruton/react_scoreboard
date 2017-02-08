@@ -73,8 +73,8 @@
     "rimraf": "^2.5.4",
     "sinon": "^1.17.7",
     "sinon-chai": "^2.8.0",
-    "webpack": "^2.2.1",
-    "webpack-bundle-analyzer": "^2.2.1",
+    "webpack": "^1.13.2",
+    "webpack-bundle-analyzer": "^1.5.3",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1",
     "webpack-md5-hash": "^0.0.5"
