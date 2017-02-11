@@ -2,6 +2,10 @@ import React from 'react';
 
 class Counter extends React.Component {
 
+  propTypes = {
+    score: React.PropTypes.number.isRequired
+  }
+
   render() {
     return(
         <div className="counter">
@@ -12,9 +16,5 @@ class Counter extends React.Component {
     );
   }
 }
-
-Counter.propTypes = {
-  score: React.PropTypes.number.isRequired
-};
 
 export default Counter;

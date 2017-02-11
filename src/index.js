@@ -26,6 +26,19 @@ const Players = [
 
 class App extends React.Component {
 
+  propTypes = {
+    title: React.PropTypes.string,
+    players: React.PropTypes.arrayOf(React.PropTypes.shape({
+      id: React.PropTypes.number.isRequired,
+      name: React.PropTypes.string.isRequired,
+      score: React.PropTypes.number.isRequired
+    })).isRequired
+  };
+
+  defaultProps = {
+    title: "Scoreboard"
+  };
+
   render() {
     return(
       <div className="scoreboard">
@@ -39,19 +52,6 @@ class App extends React.Component {
     );
   }
 }
-
-App.propTypes = {
-  title: React.PropTypes.string,
-  players: React.PropTypes.arrayOf(React.PropTypes.shape({
-    id: React.PropTypes.number.isRequired,
-    name: React.PropTypes.string.isRequired,
-    score: React.PropTypes.number.isRequired
-  })).isRequired
-};
-
-App.defaultProps = {
-  title: "Scoreboard"
-};
 
 ReactDOM.render(
   <App players={Players} />,
