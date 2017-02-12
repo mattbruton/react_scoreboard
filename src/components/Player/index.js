@@ -4,21 +4,21 @@ import Counter from '../Counter';
 
 class Player extends React.Component {
 
-  render() {
-    return(
-        <div className="player">
-            <div className="player-name">{this.props.name}</div>
-            <div className="player-score">
-                <Counter score={this.props.score}/>
-            </div>
-        </div>
-    );
-  }
-}
+    static propTypes = {
+        name: React.PropTypes.string.isRequired,
+        score: React.PropTypes.number
+    };
 
-Player.propTypes = {
-  name: React.PropTypes.string.isRequired,
-  score: React.PropTypes.number
-};
+    render() {
+        return (
+            <div className="player">
+                <div className="player-name">{this.props.name}</div>
+                <div className="player-score">
+                    <Counter />
+                </div>
+            </div>
+        );
+    }
+}
 
 export default Player;

@@ -2,6 +2,10 @@ import React from 'react';
 
 class Header extends React.Component {
 
+  static propTypes = {
+    title: React.PropTypes.string.isRequired
+  };
+
   render() {
     return(
         <div className="header">
@@ -10,9 +14,5 @@ class Header extends React.Component {
     );
   }
 }
-
-Header.propTypes = {
-  title: React.PropTypes.string.isRequired
-};
 
 export default Header;
