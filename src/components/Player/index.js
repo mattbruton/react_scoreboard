@@ -4,7 +4,7 @@ import Counter from '../Counter';
 
 class Player extends React.Component {
 
-    propTypes = {
+    static propTypes = {
         name: React.PropTypes.string.isRequired,
         score: React.PropTypes.number
     };
@@ -14,7 +14,7 @@ class Player extends React.Component {
             <div className="player">
                 <div className="player-name">{this.props.name}</div>
                 <div className="player-score">
-                    <Counter score={this.props.score}/>
+                    <Counter />
                 </div>
             </div>
         );

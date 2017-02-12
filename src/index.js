@@ -26,7 +26,7 @@ const Players = [
 
 class App extends React.Component {
 
-  propTypes = {
+  static propTypes = {
     title: React.PropTypes.string,
     players: React.PropTypes.arrayOf(React.PropTypes.shape({
       id: React.PropTypes.number.isRequired,
@@ -35,9 +35,11 @@ class App extends React.Component {
     })).isRequired
   };
 
-  defaultProps = {
-    title: "Scoreboard"
-  };
+  static get defaultProps() {
+    return {
+      title: "Scoreboard"
+    };
+  }
 
   render() {
     return(
@@ -45,7 +47,7 @@ class App extends React.Component {
         <Header title={this.props.title}/>
         <div className="players">
           {this.props.players.map((player) => {
-            return <Player name={player.name} score={player.score} key={player.id} />;
+            return <Player name={player.name} key={player.id} />;
           })}
         </div>
       </div>

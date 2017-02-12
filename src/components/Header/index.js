@@ -2,7 +2,7 @@ import React from 'react';
 
 class Header extends React.Component {
 
-  propTypes = {
+  static propTypes = {
     title: React.PropTypes.string.isRequired
   };
 
