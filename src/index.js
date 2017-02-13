@@ -28,7 +28,7 @@ class App extends React.Component {
 
   static propTypes = {
     title: React.PropTypes.string,
-    players: React.PropTypes.arrayOf(React.PropTypes.shape({
+    initialPlayers: React.PropTypes.arrayOf(React.PropTypes.shape({
       id: React.PropTypes.number.isRequired,
       name: React.PropTypes.string.isRequired,
       score: React.PropTypes.number.isRequired
@@ -41,13 +41,21 @@ class App extends React.Component {
     };
   }
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      players: this.props.initialPlayers
+    };
+  }
+
   render() {
     return(
       <div className="scoreboard">
         <Header title={this.props.title}/>
         <div className="players">
-          {this.props.players.map((player) => {
-            return <Player name={player.name} key={player.id} />;
+          {this.state.players.map((player) => {
+            return <Player name={player.name} score={player.score} key={player.id} />;
           })}
         </div>
       </div>
@@ -56,7 +64,7 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-  <App players={Players} />,
+  <App initialPlayers={Players} />,
   document.getElementById('app')
 );
 

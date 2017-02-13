@@ -14,7 +14,7 @@ class Player extends React.Component {
             <div className="player">
                 <div className="player-name">{this.props.name}</div>
                 <div className="player-score">
-                    <Counter />
+                    <Counter score={this.props.score}/>
                 </div>
             </div>
         );
