@@ -3,27 +3,16 @@ import React from 'react';
 class Counter extends React.Component {
 
   static propTypes = {
-    score: React.PropTypes.number.isRequired
+    score: React.PropTypes.number.isRequired,
+    onChange: React.PropTypes.func.isRequired
   };
-
-  incrementScore = () => {
-    this.setState({
-      score: (this.state.score + 1)
-    });
-  }
-
-  decrementScore = () => {
-    this.setState({
-      score: (this.state.score - 1)
-    });
-  }
 
   render() {
     return(
         <div className="counter">
-            <button className="counter-action decrement"> - </button>
+            <button className="counter-action decrement" onClick={() => {this.props.onChange(-1);}}> - </button>
             <div className="counter-score">{this.props.score}</div>
-            <button className="counter-action increment"> + </button>
+            <button className="counter-action increment" onClick={() => {this.props.onChange(1);}}> + </button>
         </div>
     );
   }

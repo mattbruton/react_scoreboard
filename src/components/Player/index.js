@@ -6,7 +6,8 @@ class Player extends React.Component {
 
     static propTypes = {
         name: React.PropTypes.string.isRequired,
-        score: React.PropTypes.number
+        score: React.PropTypes.number,
+        onScoreChange: React.PropTypes.func.isRequired
     };
 
     render() {
@@ -14,7 +15,7 @@ class Player extends React.Component {
             <div className="player">
                 <div className="player-name">{this.props.name}</div>
                 <div className="player-score">
-                    <Counter score={this.props.score}/>
+                    <Counter score={this.props.score} onChange={this.props.onScoreChange} />
                 </div>
             </div>
         );

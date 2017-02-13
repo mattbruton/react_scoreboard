@@ -11,13 +11,11 @@ const Players = [
     id: 0,
     name: "Lunchbox",
     score: 25
-  },
-  {
+  }, {
     id: 1,
     name: "Ziggy",
     score: 24
-  },
-  {
+  }, {
     id: 2,
     name: "Hemingway",
     score: 55
@@ -28,17 +26,18 @@ class App extends React.Component {
 
   static propTypes = {
     title: React.PropTypes.string,
-    initialPlayers: React.PropTypes.arrayOf(React.PropTypes.shape({
-      id: React.PropTypes.number.isRequired,
-      name: React.PropTypes.string.isRequired,
-      score: React.PropTypes.number.isRequired
-    })).isRequired
+    initialPlayers: React
+      .PropTypes
+      .arrayOf(React.PropTypes.shape({
+        id: React.PropTypes.number.isRequired,
+        name: React.PropTypes.string.isRequired,
+        score: React.PropTypes.number.isRequired
+      }))
+      .isRequired
   };
 
   static get defaultProps() {
-    return {
-      title: "Scoreboard"
-    };
+    return {title: "Scoreboard"};
   }
 
   constructor(props) {
@@ -49,14 +48,27 @@ class App extends React.Component {
     };
   }
 
+  onScoreChange = (playerIndex, delta) => {
+    const newPlayersInfo = this.state.players;
+    newPlayersInfo[playerIndex].score += delta;
+    this.setState({
+      players: newPlayersInfo
+    });
+  };
+
   render() {
-    return(
+    return (
       <div className="scoreboard">
-        <Header title={this.props.title}/>
-        <div className="players">
-          {this.state.players.map((player) => {
-            return <Player name={player.name} score={player.score} key={player.id} />;
-          })}
+        <Header title={this.props.title} players={this.state.players} />
+        <div className="players">{this.state.players.map((player, index) => {
+          return (
+            <Player
+              onScoreChange={(delta) => this.onScoreChange(index, delta)}
+              name={player.name}
+              score={player.score}
+              key={player.id}/>
+            );
+        })}
         </div>
       </div>
     );
@@ -64,8 +76,6 @@ class App extends React.Component {
 }
 
 ReactDOM.render(
-  <App initialPlayers={Players} />,
-  document.getElementById('app')
-);
+  <App initialPlayers={Players}/>, document.getElementById('app'));
 
 export default App;
