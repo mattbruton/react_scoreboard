@@ -1,10 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Stopwatch extends React.Component {
-
-    static propTypes = {
-
-    };
+class Stopwatch extends Component {
 
     constructor(props) {
         super(props);
@@ -16,16 +12,15 @@ class Stopwatch extends React.Component {
         };
     }
 
-    componentDidMount = () => {
+    componentDidMount() {
         this.interval = setInterval(this.onTick, 100);
-    };
+    }
 
-    componentWillUnmount = () => {
+    componentWillUnmount() {
         clearInterval(this.interval);
-    };
+    }
 
     onTick = () => {
-        console.log('tick');
         if (this.state.isRunning) {
 
             let prevTime = this.state.previousTime;
@@ -56,7 +51,7 @@ class Stopwatch extends React.Component {
         this.setState({
             elapsedTime: 0,
             previousTime: Date.now()
-        })
+        });
     };
 
     render() {
