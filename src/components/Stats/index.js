@@ -3,7 +3,10 @@ import React, { PropTypes } from 'react';
 // Instead of extending a class, defining the component as a pure function.
 
 const Stats = props => {
-    const displayTotalPlayers = () => {return props.players.length;};
+    const displayTotalPlayers = () => {
+        return props.players.length;
+    };
+
     const displayTotalPoints = () => { 
         return props.players.reduce((total, player) => {
             return total + player.score;
