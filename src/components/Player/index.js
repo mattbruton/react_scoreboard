@@ -1,29 +1,26 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Counter from '../Counter';
 
-class Player extends React.Component {
-
-    static propTypes = {
-        name: React.PropTypes.string.isRequired,
-        score: React.PropTypes.number,
-        onScoreChange: React.PropTypes.func.isRequired,
-        onRemove: React.PropTypes.func.isRequired
-    };
-
-    render() {
-        return (
-            <div className="player">
-                <div className="player-name">
-                    <a className="remove-player" onClick={this.props.onRemove}>X</a>
-                    {this.props.name}
-                </div>
-                <div className="player-score">
-                    <Counter score={this.props.score} onChange={this.props.onScoreChange} />
-                </div>
+const Player = props => {
+    return (
+        <div className="player">
+            <div className="player-name">
+                <a className="remove-player" onClick={props.onRemove}>X</a>
+                {props.name}
             </div>
-        );
-    }
-}
+            <div className="player-score">
+                <Counter score={props.score} onChange={props.onScoreChange} />
+            </div>
+        </div>
+    );
+};
+
+Player.propTypes = {
+    name: PropTypes.string.isRequired,
+    score: PropTypes.number,
+    onScoreChange: PropTypes.func.isRequired,
+    onRemove: PropTypes.func.isRequired
+};
 
 export default Player;

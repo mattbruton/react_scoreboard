@@ -10,9 +10,7 @@ class Scoreboard extends Component {
 
   static propTypes = {
     title: PropTypes.string,
-    initialPlayers: 
-      PropTypes
-      .arrayOf(PropTypes.shape({
+    initialPlayers: PropTypes.arrayOf(PropTypes.shape( {
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         score: PropTypes.number.isRequired
