@@ -1,18 +1,14 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
-class AddPlayerForm extends React.Component {
+export default class AddPlayerForm extends Component {
 
     static propTypes = {
-        onAdd: React.PropTypes.func.isRequired
+        onAdd: PropTypes.func.isRequired
     };
 
-    constructor(props) {
-    super(props);
-
-    this.state = {
-      name: ""
+    state = {
+      name: ''
     };
-  }
 
     onSubmit = (e) => {
         e.preventDefault();
@@ -39,5 +35,3 @@ class AddPlayerForm extends React.Component {
             );
         }
     }
-
-export default AddPlayerForm;
