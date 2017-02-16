@@ -1,24 +1,21 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Stats from '../Stats';
 import Stopwatch from '../Stopwatch';
 
-class Header extends React.Component {
+const Header = props => {
+  return(
+    <div className="header">
+      <Stats players={props.players}/>
+      <h1>{props.title}</h1>
+      <Stopwatch />
+    </div>
+  );
+};
 
-  static propTypes = {
-    title: React.PropTypes.string.isRequired,
-    players: React.PropTypes.array.isRequired
+Header.propTypes = {
+    title: PropTypes.string.isRequired,
+    players: PropTypes.array.isRequired
   };
-
-  render() {
-    return(
-        <div className="header">
-          <Stats players={this.props.players}/>
-          <h1>{this.props.title}</h1>
-          <Stopwatch />
-        </div>
-    );
-  }
-}
 
 export default Header;
