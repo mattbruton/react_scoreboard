@@ -1,34 +1,33 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
-class Stats extends React.Component {
+// Instead of extending a class, defining the component as a pure function.
 
-    static propTypes = {
-    players: React.PropTypes.array.isRequired
-    };
-
-    displayTotalPlayers = () => {return this.props.players.length;}
-    displayTotalPoints = () => { 
-        return this.props.players.reduce((total, player) => {
+const Stats = props => {
+    const displayTotalPlayers = () => {return props.players.length;};
+    const displayTotalPoints = () => { 
+        return props.players.reduce((total, player) => {
             return total + player.score;
         }, 0);
-    }
+    };
 
-    render() {
-        return(
-            <table className="stats">
-                <tbody>
-                    <tr>
-                        <td>Players:</td>
-                        <td>{this.displayTotalPlayers()}</td>
-                    </tr>
-                    <tr>
-                        <td>Total Points:</td>
-                        <td>{this.displayTotalPoints()}</td>
-                    </tr>
-                </tbody>
-            </table>
-            );
-        }
-    }
+    return(
+        <table className="stats">
+            <tbody>
+                <tr>
+                    <td>Players:</td>
+                    <td>{displayTotalPlayers()}</td>
+                </tr>
+                <tr>
+                    <td>Total Points:</td>
+                    <td>{displayTotalPoints()}</td>
+                </tr>
+            </tbody>
+        </table>
+    );
+};
+
+Stats.propTypes = {
+    players: PropTypes.array.isRequired
+};
 
 export default Stats;
