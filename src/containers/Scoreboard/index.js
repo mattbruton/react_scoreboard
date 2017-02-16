@@ -6,7 +6,7 @@ import AddPlayerForm from '../../components/AddPlayer';
 
 let nextId = 3;
 
-class Scoreboard extends Component {
+export default class Scoreboard extends Component {
 
   static propTypes = {
     title: PropTypes.string,
@@ -22,13 +22,9 @@ class Scoreboard extends Component {
     return {title: "Scoreboard"};
   }
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      players: this.props.initialPlayers
-    };
-  }
+  state = {
+    players: this.props.initialPlayers
+  };
 
   onScoreChange = (playerIndex, delta) => {
     const newPlayersInfo = this.state.players;
@@ -79,5 +75,3 @@ class Scoreboard extends Component {
     );
   }
 }
-
-export default Scoreboard;
