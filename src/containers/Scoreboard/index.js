@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import Header from '../../components/Header';
 import Player from '../../components/Player';
@@ -6,16 +6,16 @@ import AddPlayerForm from '../../components/AddPlayer';
 
 let nextId = 3;
 
-class Scoreboard extends React.Component {
+class Scoreboard extends Component {
 
   static propTypes = {
-    title: React.PropTypes.string,
-    initialPlayers: React
-      .PropTypes
-      .arrayOf(React.PropTypes.shape({
-        id: React.PropTypes.number.isRequired,
-        name: React.PropTypes.string.isRequired,
-        score: React.PropTypes.number.isRequired
+    title: PropTypes.string,
+    initialPlayers: 
+      PropTypes
+      .arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        score: PropTypes.number.isRequired
       }))
       .isRequired
   };
