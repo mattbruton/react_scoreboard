@@ -40,11 +40,16 @@ export default function Player(state=initialState, action) {
             };
         }
 
-        case PlayerActionTypes.REMOVE_PLAYER:
-            return [
+        case PlayerActionTypes.REMOVE_PLAYER: {
+            const removePlayerList = [    
                 ...state.slice(0, action.index),
                 ...state.slice(action.index + 1)
             ];
+            return {
+                ...state,
+                players: removePlayerList
+            };
+        }
 
         case PlayerActionTypes.UPDATE_PLAYER_SCORE:
             return state.map((player, index) => {
