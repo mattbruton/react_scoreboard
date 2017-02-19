@@ -14,7 +14,7 @@ const Header = props => {
 };
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   players: PropTypes.array.isRequired
 };
 
