@@ -5,10 +5,12 @@ const getCurrentDate = () => {
     let month = currentDate.getMonth() + 1;
     const day = currentDate.getDate();
     const year = currentDate.getFullYear();
-    if (month.length != 2)
-    {
+    // if current month is less than 2 digits long, add a zero for formatting
+    month.length === 1 ? 
+        month
+        :
         month = "0" + month;
-    }
+    // return date string
     return `${month}/${day}/${year}`;
 };
 
