@@ -25,7 +25,8 @@ const initialState = {
         }
     ],
     selectedPlayerIndex: -1
-}
+};
+
 export default function Player(state=initialState, action) {
     switch (action.type) {
         case PlayerActionTypes.ADD_PLAYER:{
@@ -42,8 +43,8 @@ export default function Player(state=initialState, action) {
 
         case PlayerActionTypes.REMOVE_PLAYER: {
             const removePlayerList = [    
-                ...state.slice(0, action.index),
-                ...state.slice(action.index + 1)
+                ...state.players.slice(0, action.index),
+                ...state.players.slice(action.index + 1)
             ];
             return {
                 ...state,
@@ -51,8 +52,8 @@ export default function Player(state=initialState, action) {
             };
         }
 
-        case PlayerActionTypes.UPDATE_PLAYER_SCORE:
-            return state.map((player, index) => {
+        case PlayerActionTypes.UPDATE_PLAYER_SCORE: {
+            const updatePlayerList = state.players.map((player,index) => {
                 if (index === action.index) {
                     return {
                         ...player,
@@ -62,6 +63,12 @@ export default function Player(state=initialState, action) {
                 }
                 return player;
             });
+            return {
+                ...state,
+                players: updatePlayerList
+            };
+    }
+           
         
         case PlayerActionTypes.SELECT_PLAYER:
             return {
