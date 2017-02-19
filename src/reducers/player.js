@@ -5,22 +5,27 @@ const month = currentDate.getMonth() + 1;
 const day = currentDate.getDay();
 const year = currentDate.getFullYear();
 
-const initialState = [
-    {
-        name: "Lunchbox",
-        score: 25,
-        created: "02/10/2017"
-    }, {
-        name: "Ziggy",
-        score: 24,
-        created: "02/10/2017"
-    }, {
-        name: "Hemingway",
-        score: 55,
-        created: "02/11/2017"
-    }
-];
-
+const initialState = {
+    players: [
+        {
+            name: "Lunchbox",
+            score: 25,
+            created: "02/10/2017",
+            updated: "02/17/2017"
+        }, {
+            name: "Ziggy",
+            score: 24,
+            created: "02/10/2017",
+            updated: "02/17/2017"
+        }, {
+            name: "Hemingway",
+            score: 55,
+            created: "02/11/2017",
+            updated: "02/17/2017"
+        }
+    ],
+    selectedPlayerIndex: -1
+}
 export default function Player(state=initialState, action) {
     switch (action.type) {
         case PlayerActionTypes.ADD_PLAYER:
