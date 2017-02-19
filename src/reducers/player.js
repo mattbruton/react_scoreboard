@@ -1,18 +1,23 @@
 import * as PlayerActionTypes from '../actiontypes/player';
 
+const currentDate = new Date;
+const month = currentDate.getMonth() + 1;
+const day = currentDate.getDay();
+const year = currentDate.getFullYear();
+
 const initialState = [
     {
-        id: 0,
         name: "Lunchbox",
-        score: 25
+        score: 25,
+        created: "02/10/2017"
     }, {
-        id: 1,
         name: "Ziggy",
-        score: 24
+        score: 24,
+        created: "02/10/2017"
     }, {
-        id: 2,
         name: "Hemingway",
-        score: 55
+        score: 55,
+        created: "02/11/2017"
     }
 ];
 
@@ -23,7 +28,8 @@ export default function Player(state=initialState, action) {
                 ...state,
                 {
                     name: action.name,
-                    score: 0
+                    score: 0,
+                    created: `${month}/${day}/${year}`
                 }
             ];
 
@@ -43,6 +49,9 @@ export default function Player(state=initialState, action) {
                 }
                 return player;
             });
+        
+        case PlayerActionTypes.SELECT_PLAYER:
+            return 
 
         default:
             return state;

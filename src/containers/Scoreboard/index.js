@@ -6,8 +6,6 @@ import Header from '../../components/Header';
 import Player from '../../components/Player';
 import AddPlayerForm from '../../components/AddPlayer';
 
-//let nextId = 3;
-
 class Scoreboard extends Component {
 
   static propTypes = {
@@ -20,6 +18,7 @@ class Scoreboard extends Component {
     const addPlayer = bindActionCreators(PlayerActionCreators.addPlayer, dispatch);
     const removePlayer = bindActionCreators(PlayerActionCreators.removePlayer, dispatch);
     const updatePlayerScore = bindActionCreators(PlayerActionCreators.updatePlayerScore, dispatch);
+    const selectPlayer = bindActionCreators(PlayerActionCreators.selectPlayer, dispatch);
 
     const playerComponents = players.map((player, index) => (
       <Player 
