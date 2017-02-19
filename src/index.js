@@ -1,27 +1,20 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import PlayerReducer from './reducers/player';
 
 import Scoreboard from './containers/Scoreboard';
 
 import './styles/main.scss';
 
-const Players = [
-  {
-    id: 0,
-    name: "Lunchbox",
-    score: 25
-  }, {
-    id: 1,
-    name: "Ziggy",
-    score: 24
-  }, {
-    id: 2,
-    name: "Hemingway",
-    score: 55
-  }
-];
+const store = createStore(
+  PlayerReducer
+);
 
 render(
-  <Scoreboard initialPlayers={Players}/>,
+  <Provider store={store}>
+    <Scoreboard />
+  </Provider>,
   document.getElementById('root')
 );
