@@ -4,6 +4,7 @@ import * as PlayerActionCreators from '../../actions/player';
 import { connect } from 'react-redux';
 import Header from '../../components/Header';
 import Player from '../../components/Player';
+import PlayerDetail from '../../components/PlayerDetail';
 import AddPlayerForm from '../../components/AddPlayer';
 
 class Scoreboard extends Component {
@@ -45,6 +46,9 @@ class Scoreboard extends Component {
           { playerComponents }
         </div>
         <AddPlayerForm addPlayer={addPlayer} />
+        <div className="player-detail">
+          <PlayerDetail selectedPlayer={selectedPlayer}/> 
+        </div>
       </div>
     );
   }

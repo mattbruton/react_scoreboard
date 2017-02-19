@@ -1,9 +1,16 @@
 import * as PlayerActionTypes from '../actiontypes/player';
 
-const currentDate = new Date;
-const month = currentDate.getMonth() + 1;
-const day = currentDate.getDay();
-const year = currentDate.getFullYear();
+const getCurrentDate = () => {
+    const currentDate = new Date;
+    let month = currentDate.getMonth() + 1;
+    const day = currentDate.getDate();
+    const year = currentDate.getFullYear();
+    if (month.length != 2)
+    {
+        month = "0" + month;
+    }
+    return `${month}/${day}/${year}`;
+};
 
 const initialState = {
     players: [
@@ -19,7 +26,7 @@ const initialState = {
             updated: "02/17/2017"
         }, {
             name: "Hemingway",
-            score: 55,
+            score: 23,
             created: "02/11/2017",
             updated: "02/17/2017"
         }
@@ -33,7 +40,7 @@ export default function Player(state=initialState, action) {
             const addPlayerList = [...state.players, {
                 name: action.name,
                 score: 0,
-                created: `${month}/${day}/${year}`
+                created: getCurrentDate()
             }];
             return {
                 ...state,
@@ -58,7 +65,7 @@ export default function Player(state=initialState, action) {
                     return {
                         ...player,
                         score: player.score + action.score,
-                        updated: `${month}/${day}/${year}`
+                        updated: getCurrentDate()
                     };
                 }
                 return player;
@@ -67,9 +74,8 @@ export default function Player(state=initialState, action) {
                 ...state,
                 players: updatePlayerList
             };
-    }
+        }
            
-        
         case PlayerActionTypes.SELECT_PLAYER:
             return {
                 ...state,
@@ -78,5 +84,5 @@ export default function Player(state=initialState, action) {
 
         default:
             return state;
-    }
+        }
 }
