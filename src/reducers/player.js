@@ -1,59 +1,90 @@
 import * as PlayerActionTypes from '../actiontypes/player';
 
-const currentDate = new Date;
-const month = currentDate.getMonth() + 1;
-const day = currentDate.getDay();
-const year = currentDate.getFullYear();
+const getCurrentDate = () => {
+    const currentDate = new Date;
+    let month = currentDate.getMonth() + 1;
+    const day = currentDate.getDate();
+    const year = currentDate.getFullYear();
+    // if current month is less than 2 digits long, add a zero for formatting
+    month.length === 1 ? 
+        month
+        :
+        month = "0" + month;
+    // return date string
+    return `${month}/${day}/${year}`;
+};
 
-const initialState = [
-    {
-        name: "Lunchbox",
-        score: 25,
-        created: "02/10/2017"
-    }, {
-        name: "Ziggy",
-        score: 24,
-        created: "02/10/2017"
-    }, {
-        name: "Hemingway",
-        score: 55,
-        created: "02/11/2017"
-    }
-];
+const initialState = {
+    players: [
+        {
+            name: "Lunchbox",
+            score: 25,
+            created: "02/10/2017",
+            updated: "02/17/2017"
+        }, {
+            name: "Ziggy",
+            score: 24,
+            created: "02/10/2017",
+            updated: "02/17/2017"
+        }, {
+            name: "Hemingway",
+            score: 23,
+            created: "02/11/2017",
+            updated: "02/17/2017"
+        }
+    ],
+    selectedPlayerIndex: -1
+};
 
 export default function Player(state=initialState, action) {
     switch (action.type) {
-        case PlayerActionTypes.ADD_PLAYER:
-            return [
+        case PlayerActionTypes.ADD_PLAYER:{
+            const addPlayerList = [...state.players, {
+                name: action.name,
+                score: 0,
+                created: getCurrentDate()
+            }];
+            return {
                 ...state,
-                {
-                    name: action.name,
-                    score: 0,
-                    created: `${month}/${day}/${year}`
-                }
-            ];
+                players: addPlayerList
+            };
+        }
 
-        case PlayerActionTypes.REMOVE_PLAYER:
-            return [
-                ...state.slice(0, action.index),
-                ...state.slice(action.index + 1)
+        case PlayerActionTypes.REMOVE_PLAYER: {
+            const removePlayerList = [    
+                ...state.players.slice(0, action.index),
+                ...state.players.slice(action.index + 1)
             ];
+            return {
+                ...state,
+                players: removePlayerList
+            };
+        }
 
-        case PlayerActionTypes.UPDATE_PLAYER_SCORE:
-            return state.map((player, index) => {
+        case PlayerActionTypes.UPDATE_PLAYER_SCORE: {
+            const updatePlayerList = state.players.map((player,index) => {
                 if (index === action.index) {
                     return {
                         ...player,
-                        score: player.score + action.score
+                        score: player.score + action.score,
+                        updated: getCurrentDate()
                     };
                 }
                 return player;
             });
-        
+            return {
+                ...state,
+                players: updatePlayerList
+            };
+        }
+           
         case PlayerActionTypes.SELECT_PLAYER:
-            return 
+            return {
+                ...state,
+                selectedPlayerIndex: action.index
+            };
 
         default:
             return state;
-    }
+        }
 }
