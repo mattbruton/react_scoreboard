@@ -56,7 +56,10 @@ export default function Player(state=initialState, action) {
             });
         
         case PlayerActionTypes.SELECT_PLAYER:
-            return 
+            return {
+                ...state,
+                selectedPlayerIndex: action.index
+            };
 
         default:
             return state;
