@@ -28,15 +28,17 @@ const initialState = {
 }
 export default function Player(state=initialState, action) {
     switch (action.type) {
-        case PlayerActionTypes.ADD_PLAYER:
-            return [
+        case PlayerActionTypes.ADD_PLAYER:{
+            const addPlayerList = [...state.players, {
+                name: action.name,
+                score: 0,
+                created: `${month}/${day}/${year}`
+            }];
+            return {
                 ...state,
-                {
-                    name: action.name,
-                    score: 0,
-                    created: `${month}/${day}/${year}`
-                }
-            ];
+                players: addPlayerList
+            };
+        }
 
         case PlayerActionTypes.REMOVE_PLAYER:
             return [
